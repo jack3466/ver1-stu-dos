@@ -1,0 +1,190 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<style>
+    /* --- BRANDING & TYPOGRAPHY --- */
+    :root {
+        --primary: #2c3e50;
+        --accent: #e67e22;
+        --light: #fdfbf7;
+        --text-dark: #2d3436;
+    }
+
+    body {
+        font-family: 'Lora', serif;
+        color: var(--text-dark);
+        background-color: var(--light);
+    }
+
+    h1, h2, h3, h4, .btn {
+        font-family: 'Poppins', sans-serif;
+    }
+
+    /* --- HERO SECTION --- */
+    .hero {
+        background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+        color: white;
+        padding: 100px 20px;
+        text-align: center;
+    }
+
+    .hero h1 {
+        font-size: 3.5rem;
+        font-weight: 800;
+        margin-bottom: 15px;
+    }
+
+    .hero p {
+        font-size: 1.3rem;
+        max-width: 700px;
+        margin: 0 auto 40px;
+        opacity: 0.9;
+        font-style: italic;
+    }
+
+    .btn-hero {
+        background-color: var(--accent);
+        color: white;
+        padding: 15px 40px;
+        font-size: 1.1rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 700;
+        box-shadow: 0 10px 20px rgba(230, 126, 34, 0.4);
+        transition: transform 0.2s;
+    }
+
+    .btn-hero:hover {
+        transform: translateY(-3px);
+    }
+
+    /* --- MISSION & VISION CARDS --- */
+    .mv-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+        padding: 60px 20px;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    .mv-card {
+        background: white;
+        padding: 40px;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        border-top: 5px solid var(--primary);
+    }
+
+    .mv-card h3 {
+        color: var(--primary);
+        font-size: 1.8rem;
+        margin-top: 0;
+    }
+
+    /* --- SERVICES GRID --- */
+    .services-section {
+        background-color: #f0f2f5;
+        padding: 80px 20px;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1100px;
+        margin: 50px auto 0;
+    }
+
+    .service-card {
+        background: white;
+        padding: 30px;
+        border-radius: 10px;
+        border-left: 4px solid var(--accent);
+    }
+    
+    .service-card h4 a {
+        font-size: 1.4rem;
+        color: var(--primary);
+        text-decoration: none;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .mv-container { grid-template-columns: 1fr; }
+        .hero h1 { font-size: 2.5rem; }
+    }
+</style>
+
+<div class="hero">
+    <h1>From Struggle To Support</h1>
+    <p>"Education teaches subjects. Opportunity demands skills. Stu-dos bridges the gap."</p>
+    <a href="{% url 'app' %}" class="btn-hero">Start Your Journey</a>
+</div>
+
+<div style="text-align: center; padding: 80px 20px; max-width: 800px; margin: 0 auto;">
+    <h2 style="font-size: 2.5rem; color: var(--primary);">The Stu-dos Story</h2>
+    <p style="font-size: 1.1rem; line-height: 1.8;">
+        Stu-dos was not born out of comfort; it was born out of struggle. 
+        We saw talented learners rejected simply because they lacked guidance. 
+        <br><br>
+        We believe that talent exists everywhere, but opportunity does not. 
+        Our goal is to be the one place where students find everything they need to move forward.
+    </p>
+</div>
+
+<div class="mv-container">
+    <div class="mv-card">
+        <h3>🚀 Our Mission</h3>
+        <p>
+            To empower students—especially those from under-resourced backgrounds—by providing 
+            accessible academic, digital, and career support that transforms potential into progress.
+        </p>
+    </div>
+    <div class="mv-card" style="border-top-color: var(--accent);">
+        <h3>👁️ Our Vision</h3>
+        <p>
+            To become a trusted student-support ecosystem that bridges education and 
+            employment through skills, services, and technology.
+        </p>
+    </div>
+</div>
+
+<div class="services-section">
+    <div style="text-align: center;">
+        <h2 style="font-size: 2.5rem; color: var(--primary);">Services We Provide</h2>
+        <p>End-to-end support for your academic journey</p>
+    </div>
+
+    <div class="services-grid">
+        <div class="service-card">
+            <h4><a href="{% url 'service_academic' %}">📄 Academic Support</a></h4>
+            <p>We handle the basics so you can focus on learning. Xerox, printing, spiral binding, and professional typing services.</p>
+        </div>
+        
+        <div class="service-card">
+            <h4><a href="{% url 'service_career' %}">💼 Career Readiness</a></h4>
+            <p>Stand out to employers. We help with ATS-friendly resumes, LinkedIn profile optimization, and cover letter drafting.</p>
+        </div>
+
+        <div class="service-card">
+            <h4><a href="{% url 'service_career' %}">📝 Application Assistance</a></h4>
+            <p>Never miss an opportunity. Guidance on internship, job, and scholarship applications.</p>
+        </div>
+
+        <div class="service-card">
+            <h4><a href="{% url 'service_skills' %}">🗣️ Skill Development</a></h4>
+            <p>Build confidence with communication skills training and interview preparation sessions.</p>
+        </div>
+    </div>
+</div>
+
+<div style="text-align: center; padding: 60px 20px; background: var(--primary); color: white;">
+    <h2 style="color: white;">You are not alone.</h2>
+    <p>Every successful journey begins with the right support.</p>
+    <br>
+    <a href="{% url 'app' %}" class="btn-hero" style="background: white; color: var(--primary);">Go to Dashboard</a>
+</div>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,600;1,400&family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
+    <title>Stu-dos</title>
+    <style>
+        body { font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; background-color: #f4f4f9; }
+        
+        /* Form Styling */
+        .form-container { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px; }
+        .form-group { margin-bottom: 10px; }
+        button { background-color: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; font-size: 1em; width: 100%; border-radius: 5px;}
+        button:hover { background-color: #218838; }
+
+        /* Task List Styling */
+        .task { background: white; border-bottom: 1px solid #eee; padding: 15px; display: flex; align-items: center; }
+        .check-btn { text-decoration: none; color: #333; font-size: 1.5em; margin-right: 15px; cursor: pointer; }
+        .subject { color: #888; font-size: 0.8em; display: block; margin-top: 4px; }
+        .completed { text-decoration: line-through; color: #aaa; }
+        
+        /* Delete Button Styling */
+        .delete-btn { 
+            margin-left: auto; /* Pushes the button to the far right */
+            text-decoration: none; 
+            color: #cc0000; 
+            font-size: 1.2em; 
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .delete-btn:hover { background-color: #ffebee; }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">My Stu-dos</h1>
+    
+    <div class="form-container">
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.title }}
+            </div>
+            <div class="form-group">
+                {{ form.subject }}
+            </div>
+            <button type="submit">Add Task</button>
+        </form>
+    </div>
+
+    {% for task in tasks %}
+        <div class="task">
+            <a href="{% url 'toggle_task' task.id %}" class="check-btn">
+                {% if task.is_completed %}☑{% else %}☐{% endif %}
+            </a>
+            
+            <div class="{% if task.is_completed %}completed{% endif %}">
+                <strong>{{ task.title }}</strong>
+                <span class="subject">{{ task.subject }}</span>
+            </div>
+
+            <a href="{% url 'delete_task' task.id %}" class="delete-btn" onclick="return confirm('Delete this task?');">
+                🗑️
+            </a>
+        </div>
+    {% empty %}
+        <p style="text-align:center">No tasks yet! Add one above.</p>
+    {% endfor %}
+    
+</body>
+</html>

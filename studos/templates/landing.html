@@ -1,0 +1,117 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-section">
+    <div class="container animate-on-scroll">
+        <h1 class="hero-title">Who We Are</h1>
+        <h2 class="hero-subtitle">We are not just a service center.<br>We are a support system for students.</h2>
+        <p class="hero-text">
+            At Stu-Dos, we understand the confusion, pressure, and uncertainty students face while managing academics, applications, skills, and career decisions. From filling a single form to shaping your future path, we stand beside you — step by step.
+        </p>
+        <p class="hero-text">
+            Whether you are a student who needs guidance, clarity, or execution support, Stu-Dos is built only for you. <br>
+            <strong>Every student deserves support. Stu-Dos makes sure you never walk alone.</strong>
+        </p>
+        <a href="#assistance" class="btn-modern">Start Your Journey</a>
+    </div>
+</section>
+
+<section class="vision-mission-section">
+    <div class="container grid-2">
+        <div class="card animate-on-scroll">
+            <h3>👁️ Our Vision</h3>
+            <p>To create a student-friendly ecosystem where every learner gets the right guidance, support, and confidence to move forward in life without fear or confusion.</p>
+        </div>
+        <div class="card animate-on-scroll">
+            <h3>🚀 Our Mission</h3>
+            <p>To simplify academic, professional, and documentation processes for students by providing reliable, affordable, and trustworthy assistance that truly understands student needs.</p>
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services-section">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Our Services</h2>
+        <div class="services-grid">
+           <a  class="service-card animate-on-scroll">
+                <div class="icon">📄</div>
+                <h3>Resume & CV Preparation</h3>
+            </a>
+            <a  class="service-card animate-on-scroll">
+                <div class="icon">📝</div>
+                <h3>Application Filling Support</h3>
+            </a>
+            <a  class="service-card animate-on-scroll">
+                <div class="icon">💼</div>
+                <h3>Internship & Career Assistance</h3>
+            </a>
+            <a  class="service-card animate-on-scroll">
+                <div class="icon">📚</div>
+                <h3>Academic Support Services</h3>
+            </a>
+            <a  class="service-card animate-on-scroll">
+                <div class="icon">💡</div>
+                <h3>Skill Support</h3>
+            </a>
+            <a h class="service-card animate-on-scroll">
+                <div class="icon">🖨️</div>
+                <h3>Digital & Practical Support</h3>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section class="why-section">
+    <div class="container animate-on-scroll">
+        <h2 class="section-title">Why Stu-Dos?</h2>
+        <p class="sub-text">Because students don’t fail due to lack of talent — they fail due to lack of guidance and support.</p>
+        
+        <div class="features-list">
+            <div class="feature-item">✅ Reduce student stress</div>
+            <div class="feature-item">✅ Save time and effort</div>
+            <div class="feature-item">✅ Avoid costly mistakes</div>
+            <div class="feature-item">✅ Provide clarity and confidence</div>
+        </div>
+        
+        <p class="quote-text">"We treat every student problem as personal and every success as shared."</p>
+    </div>
+</section>
+
+<section id="assistance" class="form-section">
+    <div class="container animate-on-scroll">
+        <div class="form-wrapper">
+            <h2>Need Assistance?</h2>
+            <p>We are here for you. Fill in your details and let us support you at the right time, in the right way.</p>
+            
+            <form method="POST" action="{% url 'landing' %}">
+                {% csrf_token %}
+                <div class="form-group">
+                    <input type="text" name="name" placeholder="Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" name="email" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>Service Required:</label>
+                    <select name="service">
+                        <option value="resume">Resume/CV Preparation</option>
+                        <option value="application">Application Filling</option>
+                        <option value="career">Career Assistance</option>
+                        <option value="academic">Academic Support</option>
+                        <option value="skill">Skill Support</option>
+                        <option value="digital">Digital Support</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Submit Request</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

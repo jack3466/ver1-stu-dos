@@ -1,0 +1,601 @@
+/* --- 1. THEME VARIABLES (The Magic) --- */
+:root {
+    --bg-color: #f8f9fa;
+    --text-color: #2c3e50;
+    --card-bg: #ffffff;
+    --primary: #4361ee;       /* Modern Blue */
+    --accent: #f72585;        /* Vibrant Pink/Red */
+    --secondary: #4cc9f0;     /* Bright Cyan */
+    --shadow: 0 10px 30px rgba(0,0,0,0.08);
+    --nav-bg: rgba(255, 255, 255, 0.9);
+    --transition: all 0.4s ease;
+}
+
+/* Dark Mode Overrides */
+body.dark-mode {
+    --bg-color: #0f172a;
+    --text-color: #e2e8f0;
+    --card-bg: #1e293b;
+    --primary: #3a86ff;
+    --nav-bg: rgba(15, 23, 42, 0.9);
+    --shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* --- 2. GLOBAL STYLES --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Poppins', sans-serif;
+    transition: background-color 0.5s ease, color 0.5s ease;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+/* --- 3. ANIMATIONS --- */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(50px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-on-scroll {
+    opacity: 0; /* Hidden by default */
+    animation: slideUp 0.8s ease-out forwards;
+    animation-delay: 0.2s; /* Wait a tiny bit */
+}
+
+/* Hover Effects */
+.hover-card {
+    background: var(--card-bg);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid transparent;
+}
+
+.hover-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 20px 40px rgba(67, 97, 238, 0.2);
+}
+
+/* --- 4. BUTTONS & UI --- */
+.btn-modern {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 12px 30px;
+    border-radius: 50px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    text-decoration: none;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+}
+
+.btn-modern:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(67, 97, 238, 0.5);
+}
+
+/* Theme Toggle Button */
+.theme-switch {
+    background: none;
+    border: 2px solid var(--text-color);
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: var(--transition);
+}
+/* --- MODERN NAVBAR STYLES --- */
+
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.85); /* Translucent White */
+    backdrop-filter: blur(12px);            /* The "Glass" Effect */
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+    transition: background 0.4s ease;
+    padding: 0.8rem 0;
+}
+
+/* Dark Mode Nav Override */
+body.dark-mode .navbar {
+    background: rgba(15, 23, 42, 0.85);
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Logo Styling */
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+}
+
+.nav-logo {
+    height: 45px;
+    transition: transform 0.3s ease;
+}
+
+.nav-brand:hover .nav-logo {
+    transform: rotate(-5deg) scale(1.1);
+}
+
+.brand-name {
+    display: block;
+    font-weight: 800;
+    font-size: 1.4rem;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+    line-height: 1;
+}
+
+.brand-slogan {
+    font-size: 0.75rem;
+    color: var(--primary);
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* Navigation Links */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    align-items: center;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: var(--text-color);
+    font-weight: 500;
+    text-decoration: none;
+    position: relative;
+    padding: 5px 0;
+    transition: color 0.3s ease;
+}
+
+/* Underline Animation */
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--primary);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--primary);
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Highlight Button (Get Assistance) */
+.btn-nav-highlight {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white !important;
+    padding: 10px 24px;
+    border-radius: 50px;
+    font-weight: 600;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.btn-nav-highlight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(67, 97, 238, 0.5);
+}
+
+/* Hamburger Menu (Hidden on Desktop) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-color);
+    transition: all 0.3s ease-in-out;
+    border-radius: 2px;
+}
+
+/* --- MOBILE RESPONSIVENESS --- */
+@media (max-width: 900px) {
+    .hamburger {
+        display: block;
+    }
+
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%;
+        top: 70px; /* Adjust based on navbar height */
+        gap: 0;
+        flex-direction: column;
+        background-color: var(--bg-color);
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        padding-bottom: 20px;
+    }
+
+    .nav-item {
+        margin: 16px 0;
+        width: 100%;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+}
+/* --- IMPROVED LAYOUT & CONTAINER --- */
+
+/* 1. The Container: Holds everything in the center */
+.container {
+    max-width: 1200px;      /* Standard wide width */
+    margin: 0 auto;         /* Centers the container */
+    padding: 0 24px;        /* Adds breathing room on mobile sides */
+    width: 100%;
+}
+
+/* 2. Section Spacing: Gives vertical breathing room between blocks */
+section {
+    padding: 80px 0;        /* Big space top/bottom for every section */
+    position: relative;
+}
+
+/* 3. Hero Section: Needs to be tall and grand */
+.hero-section {
+    padding: 120px 0 80px;  /* Extra top padding for navbar clearance */
+    text-align: center;
+    max-width: 900px;       /* Limit text width so it's readable */
+    margin: 0 auto;
+}
+
+.hero-title {
+    font-size: 3.5rem;      /* Big headline */
+    line-height: 1.2;
+    margin-bottom: 24px;
+    font-weight: 800;
+    color: var(--text-color);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-bottom: 30px;
+    font-weight: 600;
+}
+
+.hero-text {
+    font-size: 1.1rem;
+    line-height: 1.8;       /* More space between text lines */
+    color: #64748b;         /* Softer grey for reading */
+    margin-bottom: 20px;
+}
+
+/* --- CARD GRIDS (Services & Vision) --- */
+
+/* 4. Grid System: Perfectly aligned boxes */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Auto-responsive */
+    gap: 40px;              /* Big gap between cards */
+    margin-top: 60px;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    gap: 50px;              /* Big gap between Vision & Mission */
+    align-items: stretch;
+}
+
+/* 5. Card Padding: The space INSIDE the boxes */
+.card, .service-card {
+    background: var(--card-bg);
+    padding: 40px;          /* Lots of space inside the card */
+    border-radius: 20px;    /* Smooth rounded corners */
+    box-shadow: var(--shadow);
+    transition: var(--transition);
+    border: 1px solid rgba(0,0,0,0.03);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+/* Icon Spacing */
+.service-card .icon {
+    font-size: 3.5rem;
+    margin-bottom: 25px;    /* Space between icon and text */
+    display: block;
+}
+
+/* --- FORM SECTION --- */
+.form-section {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 100px 0;
+    margin-top: 80px;
+    border-radius: 30px;    /* Rounded section edges */
+}
+
+.form-wrapper {
+    max-width: 600px;       /* Keep form narrow and readable */
+    margin: 0 auto;
+    background: white;
+    padding: 50px;          /* Inner spacing for the form box */
+    border-radius: 24px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+}
+
+.form-group {
+    margin-bottom: 25px;    /* Space between input fields */
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 16px 20px;     /* Comfortable typing area */
+    border: 2px solid #e2e8f0;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.3s;
+    background: #f8fafc;
+    box-sizing: border-box; /* Prevents width issues */
+}
+
+input:focus, select:focus {
+    border-color: var(--primary);
+    background: white;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba(67, 97, 238, 0.1);
+}
+
+/* --- MOBILE ADJUSTMENTS --- */
+@media (max-width: 768px) {
+    .hero-title { font-size: 2.5rem; }
+    .grid-2 { grid-template-columns: 1fr; gap: 30px; } /* Stack vertically on mobile */
+    .services-grid { gap: 20px; }
+    .card, .service-card { padding: 30px; }
+    section { padding: 60px 0; }
+}
+/* --- 1. UPDATE CSS VARIABLES --- */
+:root {
+    /* ... keep your colors ... */
+    
+    /* ADD THESE FONT VARIABLES */
+    --font-primary: 'Poppins', sans-serif;
+    --font-heading: 'Playfair Display', serif;
+}
+
+/* --- 2. UPDATE GLOBAL STYLES --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-primary); /* Default to clean Poppins */
+    /* ... rest of body styles ... */
+}
+
+/* --- 3. ADD THIS SECTION FOR HEADINGS --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading); /* Use the elegant font for titles */
+    font-weight: 700;
+    letter-spacing: -0.5px; /* Tighter letters look more premium */
+}
+
+/* Update the Logo Text to use the new font */
+.brand-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+/* Update the Hero Title for maximum impact */
+.hero-title {
+    font-family: var(--font-heading);
+    font-style: italic; /* Adds that "magazine" look */
+}
+/* --- 1. CONFIGURATION (The Control Center) --- */
+:root {
+    /* -- LIGHT THEME COLORS -- */
+    --bg-color: #f0f4f8;            /* Very soft blue-grey */
+    --text-color: #1e293b;          /* Dark slate for readability */
+    --text-light: #64748b;          /* Soft grey for subtitles */
+    --card-bg: rgba(255, 255, 255, 0.9);
+    
+    /* Brand Colors (Gradients) */
+    --primary: #4361ee;
+    --primary-gradient: linear-gradient(135deg, #4361ee 0%, #3a0ca3 100%);
+    --accent-gradient: linear-gradient(135deg, #f72585 0%, #b5179e 100%);
+    
+    /* -- SPACING SYSTEM (Adjustable Padding) -- */
+    --spacing-xs: 8px;
+    --spacing-sm: 16px;
+    --spacing-md: 32px;
+    --spacing-lg: 64px;
+    --spacing-xl: 120px;            /* Hero section padding */
+    
+    /* -- UI EFFECTS -- */
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.05);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.1);
+    --radius-md: 12px;
+    --radius-lg: 24px;
+    
+    /* Fonts */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Poppins', sans-serif;
+}
+
+/* -- DARK THEME OVERRIDES -- */
+body.dark-mode {
+    --bg-color: #0f172a;            /* Deep Space Blue */
+    --text-color: #f1f5f9;          /* White-grey */
+    --text-light: #94a3b8;
+    --card-bg: rgba(30, 41, 59, 0.8); /* Translucent dark blue */
+    
+    --primary-gradient: linear-gradient(135deg, #4cc9f0 0%, #4361ee 100%);
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.3);
+    --shadow-lg: 0 20px 40px rgba(0,0,0,0.6);
+}
+
+/* --- 2. GLOBAL RESET & TYPOGRAPHY --- */
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: var(--font-body);
+    margin: 0;
+    line-height: 1.7; /* Beautiful, airy reading experience */
+    transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--text-color);
+    margin-bottom: var(--spacing-sm);
+    line-height: 1.2;
+}
+
+/* --- 3. REFINED LAYOUT (Using Spacing Variables) --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--spacing-md); /* Consistent side padding */
+}
+
+section {
+    padding: var(--spacing-lg) 0; /* Consistent vertical spacing */
+}
+
+/* Hero Section specific padding */
+.hero-section {
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-lg);
+    text-align: center;
+}
+
+/* --- 4. BEAUTIFUL CARDS --- */
+.card, .service-card {
+    background: var(--card-bg);
+    backdrop-filter: blur(10px);    /* Glass effect */
+    padding: var(--spacing-md);     /* Inner breathing room */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--primary);
+}
+
+/* --- 5. BUTTONS WITH GRADIENTS --- */
+.btn-modern, .btn-submit {
+    background: var(--primary-gradient);
+    color: white;
+    padding: 14px 36px;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(67, 97, 238, 0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn-modern:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6);
+    filter: brightness(1.1);
+}
+/* --- SCROLL ANIMATIONS SYSTEM --- */
+
+/* 1. Base Class (Hidden state) */
+.reveal {
+    opacity: 0;
+    transition: all 0.8s ease-out;
+    will-change: opacity, transform; /* Performance booster */
+}
+
+/* 2. The "Active" State (Visible) */
+.reveal.active {
+    opacity: 1;
+    transform: translate(0, 0) scale(1) !important;
+}
+
+/* 3. Animation Flavors */
+
+/* Fade Up (Good for Cards) */
+.fade-up {
+    transform: translateY(50px);
+}
+
+/* Slide from Left (Good for Text) */
+.slide-left {
+    transform: translateX(-50px);
+}
+
+/* Slide from Right (Good for Images) */
+.slide-right {
+    transform: translateX(50px);
+}
+
+/* Zoom In (Good for Hero Sections) */
+.zoom-in {
+    transform: scale(0.9);
+}
+
+/* 4. Staggered Delays (One after another) */
+.delay-100 { transition-delay: 0.1s; }
+.delay-200 { transition-delay: 0.2s; }
+.delay-300 { transition-delay: 0.3s; }
+.delay-400 { transition-delay: 0.4s; }
+:root {
+    /* ... your existing variables ... */
+    
+    /* ADD THESE FOR LIGHT MODE */
+    --input-bg: #ffffff;
+    --input-border: #e2e8f0;
+    --input-text: #1e293b;
+    --placeholder-color: #94a3b8;
+}
+
+body.dark-mode {
+    /* ... your existing overrides ... */
+    
+    /* ADD THESE FOR DARK MODE */
+    --input-bg: #1e293b;      /* Dark Slate */
+    --input-border: #334155;  /* Lighter Border */
+    --input-text: #f1f5f9;    /* White Text */
+    --placeholder-color: #64748b;
+}

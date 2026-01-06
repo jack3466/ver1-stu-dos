@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="contact-header animate-on-scroll">
+    <div class="container">
+        <h1>Contact Us</h1>
+        <p>We’re Here to Help You Move Forward</p>
+    </div>
+</section>
+
+<div class="container contact-wrapper animate-on-scroll" style="display: flex; gap: 40px; margin: 50px auto; flex-wrap: wrap;">
+    
+    <div class="contact-info" style="flex: 1; min-width: 300px;">
+        <h3>Get in Touch</h3>
+        <ul style="list-style: none; padding: 0; line-height: 2;">
+            <li>📍 <strong>Location:</strong> Vijayawada, Andhra Pradesh, India</li>
+            <li>📞 <strong>Phone:</strong> +91 9291419199</li>
+            <li>📧 <strong>Email:</strong> Stu.dos.official@gmail.com</li>
+            <li>📸 <strong>Instagram:</strong> <a href="https://www.instagram.com/studos.in" target="_blank">@studos.in</a></li>
+            <li>🕒 <strong>Working Hours:</strong> Mon – Sat, 10:00 AM – 7:00 PM</li>
+        </ul>
+    </div>
+
+    <div class="contact-form-box" style="flex: 1; min-width: 300px; background: white; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+        <h3>Send Us a Message</h3>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="name" placeholder="Full Name" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+            <input type="email" name="email" placeholder="Email Address" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+            <input type="tel" name="phone" placeholder="Phone Number" required style="width: 100%; padding: 10px; margin-bottom: 15px;">
+            
+            <label>Service Required</label>
+            <select name="service" style="width: 100%; padding: 10px; margin-bottom: 15px;">
+                <option>Resume / CV Preparation</option>
+                <option>Application Filling Support</option>
+                <option>Document Services</option>
+                <option>Academic Support</option>
+                <option>Career Assistance</option>
+                <option>Other</option>
+            </select>
+            
+            <textarea name="message" placeholder="Message (Optional)" rows="4" style="width: 100%; padding: 10px; margin-bottom: 15px;"></textarea>
+            
+            <button type="submit" class="btn-modern" style="width: 100%;">Request Support</button>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

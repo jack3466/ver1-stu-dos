@@ -1,0 +1,140 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stu-Dos | Made For Student Needs</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stu-Dos | Made For Student Needs</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+
+<nav class="navbar">
+    <div class="container nav-container">
+        
+        <a href="{% url 'landing' %}" class="nav-brand">
+            <img src="{% static 'images/logo.png' %}" alt="Stu-Dos" class="nav-logo">
+            <div class="brand-text">
+                <span class="brand-name">STU-DOS</span>
+                <span class="brand-slogan">Made for Student Needs</span>
+            </div>
+        </a>
+
+        <ul class="nav-menu">
+            <li class="nav-item"><a href="{% url 'landing' %}" class="nav-link">Home</a></li>
+            <li class="nav-item"><a href="{% url 'landing' %}#services" class="nav-link">Services</a></li>
+            <li class="nav-item"><a href="{% url 'about' %}" class="nav-link">About Us</a></li>
+            <li class="nav-item"><a href="{% url 'contact' %}" class="nav-link">Contact</a></li>
+            <li class="nav-item">
+                <a href="{% url 'landing' %}#assistance" class="btn-nav-highlight">Get Assistance</a>
+            </li>
+            <li class="nav-item">
+                     <button id="theme-btn" class="theme-switch" onclick="toggleTheme()">🌙</button>
+             </li>
+        </ul>
+
+        <div class="hamburger">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </div>
+    </div>
+</nav>
+
+<script>
+    // Mobile Menu Toggle
+    const hamburger = document.querySelector(".hamburger");
+    const navMenu = document.querySelector(".nav-menu");
+
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("active");
+        navMenu.classList.toggle("active");
+    });
+
+    // Close menu when a link is clicked
+    document.querySelectorAll(".nav-link").forEach(n => n.addEventListener("click", () => {
+        hamburger.classList.remove("active");
+        navMenu.classList.remove("active");
+    }));
+</script>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p>&copy;  Stu-Dos. All Rights Reserved.</p>
+                <p class="footer-sub">Designed to support students academically & professionally.</p>
+            </div>
+        </div>
+    </footer>
+
+    
+    <script>
+    // 1. Select the button
+    const themeBtn = document.getElementById('theme-btn');
+    const body = document.body;
+
+    // 2. Check if user already chose dark mode in the past
+    const currentTheme = localStorage.getItem('theme');
+    if (currentTheme === 'dark') {
+        body.classList.add('dark-mode');
+        themeBtn.textContent = '☀️'; // Set to Sun icon
+    }
+
+    // 3. The Toggle Function
+    function toggleTheme() {
+        // Toggle the class
+        body.classList.toggle('dark-mode');
+
+        // Update the Icon & Save Preference
+        if (body.classList.contains('dark-mode')) {
+            themeBtn.textContent = '☀️';
+            localStorage.setItem('theme', 'dark');
+        } else {
+            themeBtn.textContent = '🌙';
+            localStorage.setItem('theme', 'light');
+        }
+    }
+</script>
+<script>
+    // --- SCROLL ANIMATION OBSERVER ---
+    const observerOptions = {
+        threshold: 0.15, // Trigger when 15% of the element is visible
+        rootMargin: "0px 0px -50px 0px" // Offset slightly so it doesn't trigger too early
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('active'); // Add the class that triggers animation
+                // Optional: Stop observing once animated (better performance)
+                // observer.unobserve(entry.target); 
+            }
+        });
+    }, observerOptions);
+
+    // Apply observer to all elements with the 'reveal' class
+    document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+
+    // --- THEME & MOBILE MENU (Keep your existing code below) ---
+    // ... your existing toggleTheme code ...
+</script>
+</body>
+</html>
+</body>
+</html>
